@@ -239,7 +239,7 @@ class Auth_HTTP extends Auth
                 return;
             }
             
-            if ($server['PHP_SELF'] == $auth['uri']) {
+            if ($this->selfURI() == $auth['uri']) {
                 $this->uri = $auth['uri'];
                 if (substr($headers['Authorization'],0,7) == 'Digest ') {
                     
@@ -497,7 +497,7 @@ class Auth_HTTP extends Auth
     {
         $server = &$this->_importGlobalVariable('server');
 
-        $a2unhashed = $server['REQUEST_METHOD'].":".$server['PHP_SELF'];
+        $a2unhashed = $server['REQUEST_METHOD'].":".$this->selfURI();
         if($this->auth['qop'] == 'auth-int') {
             if(isset($GLOBALS["HTTP_RAW_POST_DATA"])) {
                 // In PHP < 4.3 get raw POST data from this variable
@@ -638,7 +638,7 @@ class Auth_HTTP extends Auth
             $a1 = $this->getAuthData('a1');
 
             // Work out authorisation response
-            $a2unhashed = ":".$server['PHP_SELF'];
+            $a2unhashed = ":".$this->selfURI();
             if($this->auth['qop'] == 'auth-int') {
                 $a2unhashed .= ':'.$contentMD5;
             }
@@ -711,6 +711,28 @@ class Auth_HTTP extends Auth
     }
 
     // }}}
+    // {{{ selfURI()
+    /**
+     * get self URI
+     *
+     * @access public
+     * @return string self URI
+     */
+    function selfURI() 
+    {
+        $server = &$this->_importGlobalVariable('server');
+
+        if (preg_match("/MSIE/",$server['HTTP_USER_AGENT'])) {
+            // query string should be removed for MSIE
+            $uri = preg_replace("/^(.*)\?/","\\1",$server['REQUEST_URI']);
+        } else {
+            $uri = $server['REQUEST_URI'];
+        }
+        return $uri;
+    }
+
+    // }}}
+
 }
 
 // }}}
