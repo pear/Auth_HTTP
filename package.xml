@@ -21,7 +21,7 @@
     </notes>
     <filelist>
       <dir name="/" baseinstalldir="Auth_HTTP">
-  	  <file role="php">Auth_HTTP.php</file>
+        <file role="php">Auth_HTTP.php</file>
       </dir>
     </filelist>
   </release>
