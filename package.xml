@@ -28,7 +28,7 @@ realm-based .htaccess authentication.
     </notes>
     <filelist>
       <dir name="/" baseinstalldir="Auth">
-        <file role="php" name="Auth_HTTP.php" />
+        <file role="php" name="HTTP.php" />
       </dir>
     </filelist>
     <deps>
