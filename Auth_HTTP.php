@@ -244,7 +244,7 @@ class Auth_HTTP extends Auth
             $this->password = '';
 
             $this->digest_header = null;
-            if (!empty($this->server['PHP_AUTH_DIGEST']) {
+            if (!empty($this->server['PHP_AUTH_DIGEST'])) {
                 $this->digest_header = substr($this->server['PHP_AUTH_DIGEST'],
                                               strpos($this->server['PHP_AUTH_DIGEST'],' ')+1);
             } else {
