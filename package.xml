@@ -10,6 +10,7 @@
       <user>MJ</user>
       <name>Martin Jansen</name>
       <email>mj@php.net</email>
+      <role>lead</role>
     </maintainer>
   </maintainers>
   <license>PHP License</license>
@@ -26,9 +27,12 @@ realm-based .htaccess authentication.
       This is the initial independent release of the Auth_HTTP package.
     </notes>
     <filelist>
-      <dir name="/" baseinstalldir="Auth_HTTP">
+      <dir name="/" baseinstalldir="Auth">
         <file role="php" name="Auth_HTTP.php" />
       </dir>
     </filelist>
+    <deps>
+     <dep type="pkg" rel="ge">Auth</dep>
+    </deps>
   </release>
 </package>
