@@ -323,6 +323,7 @@ class Auth_HTTP extends Auth
          * for distinct realms 
          */
          $this->_sessionName = "_authhttp".md5($this->realm);
+         $this->storage->_auth_obj->_sessionName =& $this->_sessionName;
     }
 
     // }}}
