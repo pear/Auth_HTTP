@@ -138,6 +138,25 @@ class Auth_HTTP extends Auth
      */
     var $nonce = '';
 
+    /**
+     * Holds a reference to the global server variable
+     * @var array
+     */
+    var $server;
+
+    /**
+     * Holds a reference to the global post variable
+     * @var array
+     */
+    var $post;
+
+    /**
+     * Holds a reference to the global cookie variable
+     * @var array
+     */
+    var $cookie;
+
+
     // }}}
     // {{{ Constructor
 
@@ -194,6 +213,11 @@ class Auth_HTTP extends Auth
      */
     function assignData()
     {
+        if (method_exists($this, '_importGlobalVariable')) {
+            $this->server = &$this->_importGlobalVariable('server');
+        }
+        
+        
         if ($this->authType == 'basic') {
             if (!empty($this->server['PHP_AUTH_USER'])) {
                 $this->username = $this->server['PHP_AUTH_USER'];
@@ -311,7 +335,10 @@ class Auth_HTTP extends Auth
     function login() 
     {
         $login_ok = false;
-        $this->_loadStorage();
+        if (method_exists($this, '_loadStorage')) {
+            $this->_loadStorage();
+        }
+
         /**
          * When the user has already entered a username,
          * we have to validate it.
@@ -493,6 +520,10 @@ class Auth_HTTP extends Auth
      */
     function validateDigest($response, $a1)    
     {
+        if (method_exists($this, '_importGlobalVariable')) {
+            $this->server = &$this->_importGlobalVariable('server');
+        }
+
         $a2unhashed = $this->server['REQUEST_METHOD'].":".$this->selfURI();
         if($this->auth['qop'] == 'auth-int') {
             if(isset($GLOBALS["HTTP_RAW_POST_DATA"])) {
@@ -502,6 +533,9 @@ class Auth_HTTP extends Auth
                 // In PHP >= 4.3 get raw POST data from this file
                 $body = implode("\n", $lines);
             } else {
+                if (method_exists($this, '_importGlobalVariable')) {
+                    $this->post = &$this->_importGlobalVariable('post');
+                }
                 $body = '';
                 foreach($this->post as $key => $value) {
                     if($body != '') $body .= '&';
@@ -578,6 +612,10 @@ class Auth_HTTP extends Auth
      */
     function _decodeNonce($nonce, &$time, &$hash) 
     {
+        if (method_exists($this, '_importGlobalVariable')) {
+            $this->server = &$this->_importGlobalVariable('server');
+        }
+
         if (strlen($nonce) != AUTH_HTTP_NONCE_TIME_LEN + AUTH_HTTP_NONCE_HASH_LEN) {
             return false;
         }
@@ -605,6 +643,10 @@ class Auth_HTTP extends Auth
      */
     function _getNonce() 
     {
+        if (method_exists($this, '_importGlobalVariable')) {
+            $this->server = &$this->_importGlobalVariable('server');
+        }
+
         $time = time();
         $hash = md5($time . $this->server['HTTP_USER_AGENT'] . $this->options['noncekey']);
 
@@ -710,6 +752,10 @@ class Auth_HTTP extends Auth
      */
     function selfURI() 
     {
+        if (method_exists($this, '_importGlobalVariable')) {
+            $this->server = &$this->_importGlobalVariable('server');
+        }
+
         if (preg_match("/MSIE/",$this->server['HTTP_USER_AGENT'])) {
             // query string should be removed for MSIE
             $uri = preg_replace("/^(.*)\?/","\\1",$this->server['REQUEST_URI']);
