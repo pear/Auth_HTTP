@@ -64,7 +64,7 @@ class Auth_HTTP extends Auth
 
     // }}}
     // {{{ assignData()
-    
+
     /**
      * Assign values from $PHP_AUTH_USER and $PHP_AUTH_PW
      * to internal variables
@@ -74,7 +74,7 @@ class Auth_HTTP extends Auth
     function assignData()
     {
         global $PHP_AUTH_USER,$PHP_AUTH_PW;
-        
+
         if ($PHP_AUTH_USER != "") {
             $this->username = $PHP_AUTH_USER;
         }
@@ -93,14 +93,14 @@ class Auth_HTTP extends Auth
      * @param string $username  Username
      * @param string $password  Password
      */
-    function drawLogin($username = "", $password = "") 
-    {        
+    function drawLogin($username = "")
+    {
         /**
          * Send the header commands
          */
-        Header("WWW-Authenticate: Basic realm=\"".$this->realm."\"");
-        Header("HTTP/1.0 401 Unauthorized");
-        
+        header("WWW-Authenticate: Basic realm=\"".$this->realm."\"");
+        header("HTTP/1.0 401 Unauthorized");
+
         /**
          * This code is only executed if the user hits the cancel
          * button or if he enters wrong data 3 times.
@@ -118,7 +118,8 @@ class Auth_HTTP extends Auth
      * @access public
      * @param  string $name  Name of the realm
      */
-    function setRealm($name) {
+    function setRealm($name)
+    {
         $this->realm = $name;
     }
 
@@ -131,7 +132,8 @@ class Auth_HTTP extends Auth
      * @access public
      * @param  string $text  Text to send
      */
-    function setCancelText($text) {
+    function setCancelText($text)
+    {
         $this->CancelText = $text;
     }
 
