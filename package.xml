@@ -27,11 +27,12 @@ realm-based .htaccess authentication.
   </description>
    <release>
     <version>2.1.4</version>
-    <date>2004-12-24</date>
+    <date>2005-01-02</date>
     <license>PHP License</license>
     <state>stable</state>
     <notes>
-     - fixed incompatibility problem with Auth 1.2.x.
+     - Fixed a bug #2380: constractor couldn't handle non-array option.
+     - The first stable release with HTTP Digest Authenthication support.
     </notes>
     <filelist>
       <dir name="/" baseinstalldir="Auth">
@@ -50,15 +51,6 @@ realm-based .htaccess authentication.
     </deps>
   </release>
   <changelog>
-   <release>
-    <version>2.1.4</version>
-    <date>2004-12-24</date>
-    <license>PHP License</license>
-    <state>stable</state>
-    <notes>
-     - Fixed a bug #2380: constractor couldn't handle non-array option.
-    </notes>
-   </release>
    <release>
     <version>2.1.3rc1</version>
     <date>2004-08-22</date>
