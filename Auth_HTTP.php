@@ -39,20 +39,22 @@ class Auth_HTTP extends Auth
     /**
      * Name of the realm
      *
-     * @var string
-     * @see draw_login()
+     * @access public
+     * @var    string
+     * @see    draw_login()
      */
     var $realm = "protected area";
 
     /**
      * Text to send if user hits cancel button
      *
-     * @var string
-     * @see draw_login()
+     * @access public
+     * @var    string
+     * @see    draw_login()
      */
     var $CancelText = "invalid login data";
 
-    function assign_data()
+    function assignData()
     {
         global $PHP_AUTH_USER,$PHP_AUTH_PW;
         
@@ -71,7 +73,7 @@ class Auth_HTTP extends Auth
      * @param string $username  Username
      * @param string $password  Password
      */
-    function draw_login($username = "", $password = "") 
+    function drawLogin($username = "", $password = "") 
     {        
         Header("WWW-Authenticate: Basic realm=\"".$this->realm."\"");
         Header("HTTP/1.0 401 Unauthorized");
