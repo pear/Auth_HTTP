@@ -26,8 +26,8 @@ authentication system using PHP, that is similar to Apache's
 realm-based .htaccess authentication.
   </description>
   <release>
-    <version>2.1.0RC2</version>
-    <date>2004-04-17</date>
+    <version>2.1.0</version>
+    <date>2004-05-30</date>
     <license>PHP License</license>
     <state>beta</state>
     <notes>
