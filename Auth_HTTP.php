@@ -311,7 +311,7 @@ class Auth_HTTP extends Auth
     function login() 
     {
         $login_ok = false;
-
+        $this->_loadStorage();
         /**
          * When the user has already entered a username,
          * we have to validate it.
