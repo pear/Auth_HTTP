@@ -87,7 +87,7 @@ class Auth_HTTP extends Auth
         /**
          * Try to get authentication information from IIS
          */
-        if  (!isset($this->username) && !isset($this->password)) {
+        if  (empty($this->username) && empty($this->password)) {
             if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
                 list($this->username, $this->password) = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
             }
