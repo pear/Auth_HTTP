@@ -31,7 +31,7 @@ realm-based .htaccess authentication.
     <license>PHP License</license>
     <state>stable</state>
     <notes>
-     - Fixed a bug #3630
+     - Fixed a bug #3630 getAuthData failes due to session rename.
     </notes>
     <filelist>
       <dir name="/" baseinstalldir="Auth">
@@ -56,7 +56,7 @@ realm-based .htaccess authentication.
     <license>PHP License</license>
     <state>stable</state>
    <notes>
-     - Fixed a bug #2380: constractor couldn't handle non-array option.
+     - Fixed a bug #2380: constructor couldn't handle non-array option.
      - The first stable release with HTTP Digest Authenthication support.
    </notes>
   </release>
