@@ -76,12 +76,21 @@ class Auth_HTTP extends Auth
     {
         $server = &$this->_importGlobalVariable("server");
 
-        if (isset($server['PHP_AUTH_USER']) && $server['PHP_AUTH_USER'] != "") {
+        if (!empty($server['PHP_AUTH_USER'])) {
             $this->username = $server['PHP_AUTH_USER'];
         }
 
-        if (isset($server['PHP_AUTH_PW']) && $server['PHP_AUTH_PW'] != "") {
+        if (!empty($server['PHP_AUTH_PW'])) {
             $this->password = $server['PHP_AUTH_PW'];
+        }
+
+        /**
+         * Try to get authentication information from IIS
+         */
+        if  (!isset($this->username) && !isset($this->password)) {
+            if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
+                list($this->username, $this->password) = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+            }
         }
 
         if (isset($this->username) && isset($this->password)) {
