@@ -67,7 +67,8 @@ class Auth_HTTP extends Auth
 
     /**
      * Assign values from $PHP_AUTH_USER and $PHP_AUTH_PW
-     * to internal variables
+     * to internal variables and sets the session id based
+     * on them
      *
      * @global $PHP_AUTH_USER, $PHP_AUTH_PW
      */
@@ -82,6 +83,10 @@ class Auth_HTTP extends Auth
         if (isset($server['PHP_AUTH_PW']) && $server['PHP_AUTH_PW'] != "") {
             $this->password = $server['PHP_AUTH_PW'];
         }
+
+	if (isset($this->username) && isset($this->password)) {
+	    session_id(md5("Auth_HTTP".$this->username.$this->password));
+	}
     }
 
     // }}}
