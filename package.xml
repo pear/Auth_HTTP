@@ -7,9 +7,9 @@
   <summary>HTTP authentication</summary>
   <maintainers>
     <maintainer>
-      <user>MJ</user>
-      <name>Martin Jansen</name>
-      <email>mj@php.net</email>
+      <user>gurugeek</user>
+      <name>David Costa</name>
+      <email>gurugeek@php.net</email>
       <role>lead</role>
     </maintainer>
     <maintainer>
@@ -26,11 +26,12 @@ authentication system using PHP, that is similar to Apache's
 realm-based .htaccess authentication.
   </description>
   <release>
-    <version>2.1RC1</version>
-    <date>2004-04-04</date>
+    <version>2.1.0RC2</version>
+    <date>2004-04-17</date>
     <license>PHP License</license>
     <state>beta</state>
     <notes>
+     - Added _sessionName which fixes a major issue with realm sharing.
      - Added sessionSharing option to use unique session id.
        Currently, this option is set to true by default to maintain
        backward compatibility.

@@ -443,7 +443,6 @@ class Auth_HTTP extends Auth
         if ($this->stale) {
             echo 'Stale nonce value, please re-authenticate.';
         } else {
-			print_r($this->options); // debug
             echo $this->CancelText;
         }
         exit;
