@@ -4,7 +4,7 @@
      generated package.xml files -->
 <package version="1.0">
   <name>Auth_HTTP</name>
-  <summary>The PEAR::Auth_HTTP class provides methods for creating an HTTP authentication system using PHP.</summary>
+  <summary>HTTP authentication</summary>
   <maintainers>
     <maintainer>
       <user>MJ</user>
@@ -12,6 +12,12 @@
       <email>mj@php.net</email>
     </maintainer>
   </maintainers>
+  <license>PHP License</license>
+  <description>
+The PEAR::Auth_HTTP class provides methods for creating an HTTP
+authentication system using PHP, that is similar to Apache's
+realm-based .htaccess authentication.
+  </description>
   <release>
     <version>1.0</version>
     <date>2001-08-23</date>
