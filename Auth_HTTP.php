@@ -211,6 +211,7 @@ class Auth_HTTP extends Auth
      * to internal variables and sets the session id based
      * on them
      *
+     * @access public
      * @return void
      */
     function assignData()
@@ -433,6 +434,7 @@ class Auth_HTTP extends Auth
      *
      * @param  string $username  Username
      * @return void
+     * @access private
      */
     function drawLogin($username = "")
     {
@@ -516,7 +518,7 @@ class Auth_HTTP extends Auth
     /**
      * judge if the client response is valid.
      *
-     * @access public
+     * @access private
      * @param  string $response  client response
      * @param  string $a1 password or hashed password stored in container
      * @return bool true if success, false otherwise
@@ -664,7 +666,7 @@ class Auth_HTTP extends Auth
      *
      * @notes md5 hash of contents is required if 'qop' is 'auth-int'
      *
-     * @access public
+     * @access private
      * @param string MD5 hash of content
      */
     function authenticationInfo($contentMD5 = '') {
