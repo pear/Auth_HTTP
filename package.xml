@@ -47,7 +47,7 @@ Other changes:
       </dir>
     </filelist>
     <deps>
-     <dep type="pkg" rel="ge">Auth</dep>
+     <dep type="pkg" rel="has">Auth</dep>
     </deps>
   </release>
   <changelog>
