@@ -43,7 +43,7 @@ Other changes:
     </notes>
     <filelist>
       <dir name="/" baseinstalldir="Auth">
-        <file role="php" name="HTTP.php" />
+        <file role="php" name="Auth_HTTP.php" install-as="HTTP.php" />
       </dir>
     </filelist>
     <deps>
