@@ -324,7 +324,6 @@ class Auth_HTTP extends Auth
          * for distinct realms 
          */
          $this->_sessionName = "_authhttp".md5($this->realm);
-         $this->storage->_auth_obj->_sessionName =& $this->_sessionName;
     }
 
     // }}}
@@ -342,6 +341,7 @@ class Auth_HTTP extends Auth
         if (method_exists($this, '_loadStorage')) {
             $this->_loadStorage();
         }
+        $this->storage->_auth_obj->_sessionName =& $this->_sessionName;
 
         /**
          * When the user has already entered a username,
