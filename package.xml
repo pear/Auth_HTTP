@@ -26,19 +26,12 @@ authentication system using PHP, that is similar to Apache's
 realm-based .htaccess authentication.
   </description>
   <release>
-    <version>2.1.0</version>
-    <date>2004-05-30</date>
+    <version>2.1.1</version>
+    <date>2004-07-12</date>
     <license>PHP License</license>
     <state>beta</state>
     <notes>
-     - Added _sessionName which fixes a major issue with realm sharing.
-     - Added sessionSharing option to use unique session id.
-       Currently, this option is set to true by default to maintain
-       backward compatibility.
-     - Added setOption and getOption to set/get option value.
-     - Starting with this release, HTTP Digest Authentication (RFC2617) is
-       experimentally supported. The code for HTTP Digest Authentication is 
-       originally developed by Tom Pike.
+     - Fixed a bug #1634 (URI parameter was handled incorrectry.)
     </notes>
     <filelist>
       <dir name="/" baseinstalldir="Auth">
@@ -57,6 +50,22 @@ realm-based .htaccess authentication.
     </deps>
   </release>
   <changelog>
+   <release>
+    <version>2.1.0</version>
+    <date>2004-05-30</date>
+    <license>PHP License</license>
+    <state>beta</state>
+    <notes>
+     - Added _sessionName which fixes a major issue with realm sharing.
+     - Added sessionSharing option to use unique session id.
+       Currently, this option is set to true by default to maintain
+       backward compatibility.
+     - Added setOption and getOption to set/get option value.
+     - Starting with this release, HTTP Digest Authentication (RFC2617) is
+       experimentally supported. The code for HTTP Digest Authentication is 
+       originally developed by Tom Pike.
+    </notes>
+   </release>
    <release>   
     <version>2.0</version>
     <date>2003-10-16</date>
