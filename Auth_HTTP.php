@@ -1,4 +1,4 @@
- <?php
+<?php
 //
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
@@ -15,10 +15,9 @@
 // +----------------------------------------------------------------------+
 // | Authors: Martin Jansen <mj@php.net>                                  |
 // |          Rui Hirokawa <hirokawa@php.net>                             |
-// |          David Costa  <gurugeek@php.net>                             |
 // +----------------------------------------------------------------------+
 //
-//  $Id$ 
+// $Id$
 //
 
 require_once "Auth/Auth.php";
@@ -155,7 +154,7 @@ class Auth_HTTP extends Auth
     {
         /* set default values for options */
         $this->options = array('cryptType' => 'md5',
-			       'algorithm' => 'MD5',
+							   'algorithm' => 'MD5',
                                'qop' => 'auth-int,auth',
                                'opaquekey' => 'moo',
                                'noncekey' => 'moo',
@@ -293,12 +292,6 @@ class Auth_HTTP extends Auth
             isset($this->username) && isset($this->password)) {
             session_id(md5('Auth_HTTP' . $this->username . $this->password));
         }
-        
-        /**
-         * set sessionName for AUTH, so that the sessionName is different 
-         * for distinct realms 
-         */
-         $this->_sessionName = "_authhttp".md5($this->realm);
     }
 
     // }}}
