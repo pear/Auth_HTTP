@@ -27,15 +27,17 @@ realm-based .htaccess authentication.
   </description>
   <release>
     <version>2.1</version>
-    <date>2004-3-19</date>
+    <date>2004-4-4</date>
     <license>PHP License</license>
     <state>beta</state>
     <notes>
-<![CDATA[
-Starting with this release, HTTP Digest Authentication (RFC2617) is
-experimentally supported. The code for HTTP Digest Authentication is 
-originally developed by Tom Pike <tom.pike@xiven.com>.
-]]>
+     - Added sessionSharing option to use unique session id.
+       Currently, this option is set to true by default to maintain
+       backward compatibility.
+     - Added setOption and getOption to set/get option value.
+     - Starting with this release, HTTP Digest Authentication (RFC2617) is
+       experimentally supported. The code for HTTP Digest Authentication is 
+       originally developed by Tom Pike.
     </notes>
     <filelist>
       <dir name="/" baseinstalldir="Auth">

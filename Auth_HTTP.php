@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2003 The PHP Group                                |
+// | Copyright (c) 1997-2004 The PHP Group                                |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.02 of the PHP license,      |
 // | that is bundled with this package in the file LICENSE, and is        |
@@ -45,6 +45,7 @@ define('AUTH_HTTP_NONCE_HASH_LEN', 32);
  *
  * @author  Martin Jansen <mj@php.net>
  * @author  Rui Hirokawa <hirokawa@php.net>
+ * @author  David Costa <gurugeek@php.net>
  * @package Auth_HTTP
  * @extends Auth
  * @version $Revision$
@@ -160,6 +161,7 @@ class Auth_HTTP extends Auth
                                'digestRealm' => 'protected area',
                                'forceDigestOnly' => false,
                                'nonceLife' => 300,
+                               'sessionSharing' => true,
                                );
 		
         if (!empty($options['authType'])) {
@@ -192,6 +194,7 @@ class Auth_HTTP extends Auth
     function assignData()
     {
         $server = &$this->_importGlobalVariable('server');
+
         if ($this->authType == 'basic') {
             if (!empty($server['PHP_AUTH_USER'])) {
                 $this->username = $server['PHP_AUTH_USER'];
@@ -285,7 +288,8 @@ class Auth_HTTP extends Auth
             return PEAR::raiseError('authType is invalid.');
         }
 
-        if (isset($this->username) && isset($this->password)) {
+        if ($this->options['sessionSharing'] && 
+            isset($this->username) && isset($this->password)) {
             session_id(md5('Auth_HTTP' . $this->username . $this->password));
         }
     }
@@ -652,6 +656,54 @@ class Auth_HTTP extends Auth
             header($wwwauth);
         }
     }
+    // }}}
+    // {{{ setOption()
+    /**
+     * set authentication option
+     *
+     * @access public
+     * @param mixed $name key of option
+     * @param mixed $value value of option
+     * @return void
+     */
+    function setOption($name, $value = null) 
+    {
+        if (is_array($name)) {
+            foreach($name as $key => $value) {
+                if (array_key_exists( $key, $this->options)) {
+                    $this->options[$key] = $value;
+                }
+            }
+        } else {
+            if (array_key_exists( $name, $this->options)) {
+                    $this->options[$name] = $value;
+            }
+        }
+    }
+
+    // }}}
+    // {{{ getOption()
+    /**
+     * get authentication option
+     *
+     * @access public
+     * @param string $name key of option
+     * @return mixed option value
+     */
+    function getOption($name) 
+    {
+        if (array_key_exists( $name, $this->options)) {
+            return $this->options[$name];
+        }
+        if ($name == 'CancelText') {
+            return $this->CancelText;
+        }
+        if ($name == 'Realm') {
+            return $this->realm;
+        }
+        return false;
+    }
+
     // }}}
 }
 
