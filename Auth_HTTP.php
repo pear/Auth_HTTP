@@ -188,15 +188,17 @@ class Auth_HTTP extends Auth
             $this->authType = strtolower($options['authType']);
         }
 		
-		foreach($options as $key => $value) {
-			if (array_key_exists( $key, $this->options)) {
-				$this->options[$key] = $value;
-			}
-		}
+        if (is_array($options)) {
+            foreach($options as $key => $value) {
+                if (array_key_exists( $key, $this->options)) {
+                    $this->options[$key] = $value;
+                }
+            }
 		
-		if (!empty($this->options['opaquekey'])) {
-			$this->opaque = md5($this->options['opaquekey']);
-		}
+            if (!empty($this->options['opaquekey'])) {
+                $this->opaque = md5($this->options['opaquekey']);
+            }
+        }
 		
 		$this->Auth($storageDriver, $options);
 	}
