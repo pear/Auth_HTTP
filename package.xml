@@ -26,12 +26,14 @@ authentication system using PHP, that is similar to Apache's
 realm-based .htaccess authentication.
   </description>
    <release>
-    <version>2.1.5</version>
-    <date>2005-04-03</date>
+    <version>2.1.6RC1</version>
+    <date>2005-04-04</date>
     <license>PHP License</license>
     <state>stable</state>
     <notes>
-     - Fixed a bug #3630 getAuthData failes due to session rename.
+     - Fixed bug #4047.
+     - Fixed backward compatibility with PHP 4.x
+     - Added PHP_AUTH_DIGEST support.
     </notes>
     <filelist>
       <dir name="/" baseinstalldir="Auth">
@@ -50,6 +52,15 @@ realm-based .htaccess authentication.
     </deps>
   </release>
   <changelog>
+  <release>
+    <version>2.1.5</version>
+    <date>2005-04-02</date>
+    <license>PHP License</license>
+    <state>stable</state>
+   <notes>
+     - Fixed a bug #3630 getAuthData failes due to session rename.
+   </notes>
+  </release>
   <release>
     <version>2.1.4</version>
     <date>2005-01-02</date>
