@@ -41,7 +41,7 @@ define('AUTH_HTTP_NONCE_HASH_LEN', 32);
  *
  * This class requires the PEAR::Auth package.
  *
- * @notes The HTTP Diegest Authentication part is based on
+ * @notes The HTTP Digest Authentication part is based on
  *  authentication class written by Tom Pike <tom.pike@xiven.com>
  *
  * @author  Martin Jansen <mj@php.net>
@@ -240,13 +240,23 @@ class Auth_HTTP extends Auth
                 }
             }
         } elseif ($this->authType == 'digest') {
-         $this->username = '';
-         $this->password = '';
+            $this->username = '';
+            $this->password = '';
 
-            $headers = getallheaders();
-            if(isset($headers['Authorization']) && !empty($headers['Authorization'])) {
-                $authtemp = explode(',', substr($headers['Authorization'],
-                                                strpos($headers['Authorization'],' ')+1));
+            $this->digest_header = null;
+            if (!empty($this->server['PHP_AUTH_DIGEST']) {
+                $this->digest_header = substr($this->server['PHP_AUTH_DIGEST'],
+                                              strpos($this->server['PHP_AUTH_DIGEST'],' ')+1);
+            } else {
+                $headers = getallheaders();
+                if(isset($headers['Authorization']) && !empty($headers['Authorization'])) {
+                    $this->digest_header = substr($headers['Authorization'],
+                                                  strpos($headers['Authorization'],' ')+1);
+                }
+            }
+
+            if($this->digest_header) {
+                $authtemp = explode(',', $this->digest_header);
                 $auth = array();
                 foreach($authtemp as $key => $value) {
                     $value = trim($value);

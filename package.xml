@@ -27,7 +27,7 @@ realm-based .htaccess authentication.
   </description>
    <release>
     <version>2.1.5</version>
-    <date>2005-03-07</date>
+    <date>2005-04-03</date>
     <license>PHP License</license>
     <state>stable</state>
     <notes>
