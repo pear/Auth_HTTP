@@ -73,14 +73,14 @@ class Auth_HTTP extends Auth
      */
     function assignData()
     {
-        global $PHP_AUTH_USER,$PHP_AUTH_PW;
+        $server = &$this->_importGlobalVariable("server");
 
-        if ($PHP_AUTH_USER != "") {
-            $this->username = $PHP_AUTH_USER;
+        if (isset($server['PHP_AUTH_USER']) && $server['PHP_AUTH_USER'] != "") {
+            $this->username = $server['PHP_AUTH_USER'];
         }
 
-        if ($PHP_AUTH_PW != "") {
-            $this->password = $PHP_AUTH_PW;
+        if (isset($server['PHP_AUTH_PW']) && $server['PHP_AUTH_PW'] != "") {
+            $this->password = $server['PHP_AUTH_PW'];
         }
     }
 
