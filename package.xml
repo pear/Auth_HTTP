@@ -5,7 +5,7 @@
   <name>Auth_HTTP</name>
   <summary>The PEAR::Auth_HTTP class provides methods for creating an HTTP authentication system using PHP.</summary>
   <maintainer>
-    <initials>MJ</initials>
+    <user>MJ</user>
     <name>Martin Jansen</name>
     <email>mj@php.net</email>
   </maintainer>
