@@ -20,11 +20,26 @@ authentication system using PHP, that is similar to Apache's
 realm-based .htaccess authentication.
   </description>
   <release>
-    <version>1.0</version>
-    <date>2001-08-23</date>
+    <version>2.0</version>
+    <date>2003-10-XX</date>
+    <license>PHP License</license>
     <state>stable</state>
     <notes>
-      This is the initial independent release of the Auth_HTTP package.
+<![CDATA[
+Starting with this release, the code will not be placed in
+Auth_HTTP/Auth_HTTP.php anymore. Instead Auth/HTTP.php is used, which
+conforms to the PEAR standards.
+
+In order to make use of the new version, you will need to change your
+scripts to include the file at the new location! The old version in
+Auth_HTTP/Auth_HTTP.php will not be removed when upgrading.
+
+Other changes:
+
+* If it is possible, the session ID will be chosen based on the user's
+  authentication credentials. (Patch by: Marko Karppinen)
+* Cleaned up internal variable usage. (Patch by: Brad Bulger)
+]]>
     </notes>
     <filelist>
       <dir name="/" baseinstalldir="Auth">
@@ -35,4 +50,14 @@ realm-based .htaccess authentication.
      <dep type="pkg" rel="ge">Auth</dep>
     </deps>
   </release>
+  <changelog>
+   <release>   
+    <version>1.0</version>
+    <date>2001-08-23</date>
+    <state>stable</state>
+    <notes>
+      This is the initial independent release of the Auth_HTTP package.
+    </notes>
+   </release>
+  </changelog>
 </package>
