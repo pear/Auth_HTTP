@@ -70,7 +70,7 @@ class Auth_HTTP extends Auth
      * to internal variables and sets the session id based
      * on them
      *
-     * @global $PHP_AUTH_USER, $PHP_AUTH_PW
+     * @return void
      */
     function assignData()
     {
@@ -84,9 +84,9 @@ class Auth_HTTP extends Auth
             $this->password = $server['PHP_AUTH_PW'];
         }
 
-	if (isset($this->username) && isset($this->password)) {
-	    session_id(md5("Auth_HTTP".$this->username.$this->password));
-	}
+        if (isset($this->username) && isset($this->password)) {
+            session_id(md5("Auth_HTTP" . $this->username . $this->password));
+        }
     }
 
     // }}}
@@ -95,8 +95,8 @@ class Auth_HTTP extends Auth
     /**
      * Launch the login box
      *
-     * @param string $username  Username
-     * @param string $password  Password
+     * @param  string $username  Username
+     * @return void
      */
     function drawLogin($username = "")
     {
@@ -122,6 +122,7 @@ class Auth_HTTP extends Auth
      *
      * @access public
      * @param  string $name  Name of the realm
+     * @return void
      */
     function setRealm($name)
     {
@@ -136,6 +137,7 @@ class Auth_HTTP extends Auth
      *
      * @access public
      * @param  string $text  Text to send
+     * @return void
      */
     function setCancelText($text)
     {
