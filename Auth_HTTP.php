@@ -27,21 +27,29 @@ require_once "Auth/Auth.php";
  * The PEAR::Auth_HTTP class provides methods for creating an
  * HTTP authentication system using PHP.
  *
+ * Instead of generating an HTML driven form like PEAR::Auth
+ * does, this class sends header commands to the clients which
+ * cause them to present a login box like they are e.g. used
+ * in Apache's .htaccess mechanism.
+ *
+ * This class requires the PEAR::Auth package.
+ *
  * @author  Martin Jansen <mj@php.net>
  * @package Auth_HTTP
  * @extends Auth
  * @version $Revision$
- * @todo    Clean up PHPDoc comments
  */
 class Auth_HTTP extends Auth
 {
-    
+
+    // {{{ properties
+
     /**
      * Name of the realm
      *
      * @access public
      * @var    string
-     * @see    draw_login()
+     * @see    drawLogin()
      */
     var $realm = "protected area";
 
@@ -50,10 +58,19 @@ class Auth_HTTP extends Auth
      *
      * @access public
      * @var    string
-     * @see    draw_login()
+     * @see    drawLogin()
      */
-    var $CancelText = "invalid login data";
+    var $CancelText = "Error 401 - Access denied";
 
+    // }}}
+    // {{{ assignData()
+    
+    /**
+     * Assign values from $PHP_AUTH_USER and $PHP_AUTH_PW
+     * to internal variables
+     *
+     * @global $PHP_AUTH_USER, $PHP_AUTH_PW
+     */
     function assignData()
     {
         global $PHP_AUTH_USER,$PHP_AUTH_PW;
@@ -67,6 +84,9 @@ class Auth_HTTP extends Auth
         }
     }
 
+    // }}}
+    // {{{ drawLogin()
+
     /**
      * Launch the login box
      *
@@ -75,11 +95,22 @@ class Auth_HTTP extends Auth
      */
     function drawLogin($username = "", $password = "") 
     {        
+        /**
+         * Send the header commands
+         */
         Header("WWW-Authenticate: Basic realm=\"".$this->realm."\"");
         Header("HTTP/1.0 401 Unauthorized");
+        
+        /**
+         * This code is only executed if the user hits the cancel
+         * button or if he enters wrong data 3 times.
+         */
         echo $this->CancelText;
         exit;
     }
+
+    // }}}
+    // {{{ setRealm()
 
     /**
      * Set name of the current realm
@@ -91,6 +122,9 @@ class Auth_HTTP extends Auth
         $this->realm = $name;
     }
 
+    // }}}
+    // {{{ setCancelText()
+
     /**
      * Set the text to send if user hits the cancel button
      *
@@ -100,5 +134,7 @@ class Auth_HTTP extends Auth
     function setCancelText($text) {
         $this->CancelText = $text;
     }
+
+    // }}}
 }
 ?>
