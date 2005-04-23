@@ -26,8 +26,8 @@ authentication system using PHP, that is similar to Apache's
 realm-based .htaccess authentication.
   </description>
    <release>
-    <version>2.1.6RC1</version>
-    <date>2005-04-04</date>
+    <version>2.1.6</version>
+    <date>2005-04-23</date>
     <license>PHP License</license>
     <state>stable</state>
     <notes>
@@ -52,6 +52,17 @@ realm-based .htaccess authentication.
     </deps>
   </release>
   <changelog>
+  <release>
+    <version>2.1.6RC1</version>
+    <date>2005-04-11</date>
+    <license>PHP License</license>
+    <state>beta</state>
+   <notes>
+     - Fixed bug #4047.
+     - Fixed backward compatibility with PHP 4.x
+     - Added PHP_AUTH_DIGEST support.
+   </notes>
+  </release>
   <release>
     <version>2.1.5</version>
     <date>2005-04-02</date>
