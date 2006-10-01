@@ -321,7 +321,8 @@ class Auth_HTTP extends Auth
                 }
             }
         } else {
-            return PEAR::raiseError('authType is invalid.');
+            include_once 'PEAR.php';
+            return PEAR::throwError('authType is invalid.');
         }
 
         if ($this->options['sessionSharing'] && 
@@ -385,7 +386,8 @@ class Auth_HTTP extends Auth
                     $pwd = $dbs->db->getOne($query); // password stored in container.
                     
                     if (DB::isError($pwd)) {
-                        return PEAR::raiseError($pwd->getMessage(), $pwd->getCode());
+                        include_once 'PEAR.php';
+                        return PEAR::throwError($pwd->getMessage(), $pwd->getCode());
                     }
                     
                     if ($this->options['cryptType'] == 'none') {
