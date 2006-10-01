@@ -181,7 +181,7 @@ class Auth_HTTP extends Auth
                                'digestRealm' => 'protected area',
                                'forceDigestOnly' => false,
                                'nonceLife' => 300,
-                               'sessionSharing' => true,
+                               'sessionSharing' => false,
                                );
 		
         if (!empty($options['authType'])) {
