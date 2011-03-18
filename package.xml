@@ -42,12 +42,12 @@ realm-based .htaccess authentication.
           <file role="php" name="HTTP.php" />
         </dir>
       </dir>
-      <dir name="tests" role="test" baseinstalldir="Auth/HTTP">
-       <file name="sample.sql"/>
-       <file name="test_basic_simple.php"/>
-       <file name="test_digest_simple.php"/>
-       <file name="test_digest_get.php"/>
-       <file name="test_digest_post.php"/>
+      <dir name="docs" role="test" baseinstalldir="Auth/HTTP">
+       <file name="sample.sql" role="doc"/>
+       <file name="test_basic_simple.php" role="doc"/>
+       <file name="test_digest_simple.php" role="doc"/>
+       <file name="test_digest_get.php" role="doc"/>
+       <file name="test_digest_post.php" role="doc"/>
       </dir>
     </filelist>
     <deps>
