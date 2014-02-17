@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Auth_HTTP": "./"
+            "Auth": "./"
         }
     },
     "description": "More info available on: http://pear.php.net/package/Auth_HTTP",
@@ -28,7 +28,8 @@
     },
     "type": "library",
     "require": {
-        "pear/pear_exception": "*"
+        "pear/pear_exception": "*",
+        "pear/auth": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
